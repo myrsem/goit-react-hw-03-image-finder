@@ -43,13 +43,6 @@ class App extends Component {
           images: [...prevState.images, ...hits],
           page: prevState.page + 1,
         }));
-
-        if (this.state.images.length > 12) {
-          window.scrollTo({
-            top: document.documentElement.scrollHeight,
-            behavior: 'smooth',
-          });
-        }
       })
       .finally(() => this.setState({ isLoading: false }));
   };
@@ -72,14 +65,12 @@ class App extends Component {
 
   render() {
     const { images, isLoading, showModal, currentPictures } = this.state;
-    const isNotLastPage = images.length === 12;
-    const btnEnable = images.length > 0 && !isLoading && isNotLastPage;
     return (
       <AppContainer>
         <Searchbar onSubmit={this.onChangeQuery} />
 
         <ImageGallery images={images} onImgClick={this.onImgClick} />
-        {btnEnable && (
+        {images.length >= 12 && (
           <Button
             onClick={this.fetchImages}
             text={isLoading ? 'Loading...' : 'Load more'}
