@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { createPortal } from 'react-dom';
 import { Overlay, ModalWindow } from 'components/Modal/Modal.styled';
+import PropTypes from 'prop-types';
 
 const modalRoot = document.getElementById('modal-root');
 
@@ -32,6 +33,11 @@ class Modal extends Component {
       modalRoot,
     );
   }
+}
+
+Modal.propTypes = {
+  onClose: PropTypes.func.isRequired,
+  children: PropTypes.node.isRequired,
 }
 
 export default Modal;

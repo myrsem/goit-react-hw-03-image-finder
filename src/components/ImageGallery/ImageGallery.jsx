@@ -25,6 +25,7 @@ ImageGallery.propTypes = {
       id: PropTypes.number.isRequired,
     })
   ),
+  onImgClick: PropTypes.func.isRequired,
 };
 
 export default ImageGallery;

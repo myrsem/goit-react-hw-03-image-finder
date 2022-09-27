@@ -30,7 +30,10 @@ class App extends Component {
   }
 
   onChangeQuery = query => {
-    this.setState({ searchQuery: query, page: 1, images: [] });
+    const { searchQuery } = this.state;
+    if (searchQuery !== query) {
+      this.setState({ searchQuery: query, page: 1, images: [] });
+    }
   };
 
   fetchImages = () => {

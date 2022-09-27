@@ -12,13 +12,17 @@ class Searchbar extends Component {
   state = { query: '' };
 
   handleChange = e => {
-    this.setState({ query: e.target.value });
+    this.setState({ query: e.target.value.toLowerCase() });
   };
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.onSubmit(this.state.query);
-    this.setState({ query: '' });
+    const { query } = this.state;
+    if (query.trim() === '') {
+      alert('What picture do you need?');
+      return;
+    }
+    this.props.onSubmit(query);
   };
   
   render() {
@@ -45,7 +49,7 @@ class Searchbar extends Component {
   };
   
   Searchbar.propTypes = {
-    onSubmit: PropTypes.func,
+    onSubmit: PropTypes.func.isRequired,
   };
   
   export default Searchbar;
